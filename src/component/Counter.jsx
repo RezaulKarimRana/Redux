@@ -1,12 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { increment } from "../features/counterSlice";
+import { decrement, increment } from "../features/counterSlice";
 import { useSelector } from "react-redux";
 const Counter = () => {
   const count = useSelector((state) => state?.counter?.count);
   const dispatch = useDispatch();
   const handleIncrement = () => {
     dispatch(increment());
+  };
+  const handleDecrement = () => {
+    dispatch(decrement());
   };
   return (
     <>
@@ -18,6 +21,13 @@ const Counter = () => {
         onClick={handleIncrement}
       >
         Increment
+      </button>
+      <br />
+      <button
+        className="px-5 py-2 mt-2 bg-red-600 rounded-md"
+        onClick={handleDecrement}
+      >
+        Decrement
       </button>
     </>
   );

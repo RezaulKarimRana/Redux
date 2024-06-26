@@ -15,8 +15,7 @@ const Home = () => {
         <p className="text-xl">I am from Home</p>
       </div> */}
       <h1 className="font-bold text-black text-[40px] font-mono">
-        {count}
-        From Redux
+        {count} From Redux
       </h1>
       <Counter />
     </>
