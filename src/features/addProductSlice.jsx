@@ -5,11 +5,16 @@ const addProductSlice = createSlice({
     productList: [],
   },
   reducers: {
-    addProduct: (state) => {
-      state.productList.push("Apple");
+    addProduct: (state, action) => {
+      if (action.payload !== "undefined")
+        state.productList = [...state.productList, action.payload];
     },
-    deleteProduct: (state) => {
-      state.productList.pop("Apple");
+    deleteProduct: (state, action) => {
+      if (action.payload !== "undefined") {
+        state.productList = state.productList.filter(
+          (x) => x !== action.payload
+        );
+      }
     },
   },
 });
