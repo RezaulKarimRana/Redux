@@ -6,6 +6,7 @@ const addProductSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
+      debugger;
       if (action.payload !== "undefined")
         state.productList = [...state.productList, action.payload];
     },

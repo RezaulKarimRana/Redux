@@ -10,8 +10,11 @@ const Products = () => {
         <img width={150} src="src/assets/home.svg" />
       </div>
       {products.map((product, index) => (
-        <div key={index}>
-          <h1>{product}</h1>
+        <div key={index} className="border">
+          <h1>Product Name: {product.name}</h1>
+          <h1>Brand: {product.brand}</h1>
+          <h1>Description: {product.description}</h1>
+          {product.available == 1 ? "Yes" : "No"}
         </div>
       ))}
       <Outlet />
