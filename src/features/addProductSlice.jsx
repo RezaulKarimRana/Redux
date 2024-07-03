@@ -6,14 +6,13 @@ const addProductSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
-      debugger;
       if (action.payload !== "undefined")
         state.productList = [...state.productList, action.payload];
     },
     deleteProduct: (state, action) => {
       if (action.payload !== "undefined") {
         state.productList = state.productList.filter(
-          (x) => x !== action.payload
+          (x) => x.id !== action.payload
         );
       }
     },

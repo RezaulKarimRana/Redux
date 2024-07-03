@@ -1,28 +1,64 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct, deleteProduct } from "../features/addProductSlice";
+import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
   const [available, setAvailable] = useState(1);
-  const product = { name: "", brand: "", description: "", available: "" };
+  const product = {
+    id: "",
+    name: "",
+    brand: "",
+    description: "",
+    available: "",
+    createdAt: "",
+  };
   const dispatch = useDispatch();
   const handleAddProduct = (e) => {
     e.preventDefault();
-    product.name = name;
-    product.brand = brand;
-    product.description = description;
-    product.available = available;
-    dispatch(addProduct(product));
-    setName("");
-    setBrand("");
-    setDescription("");
-    setAvailable(1);
+    if (name !== "" && description !== "" && brand !== "") {
+      product.id = Date.now().toString(32);
+      product.name = name;
+      product.brand = brand;
+      product.description = description;
+      product.available = available;
+      product.createdAt = new Date().toString();
+      dispatch(addProduct(product));
+      setName("");
+      setBrand("");
+      setDescription("");
+      setAvailable(1);
+      toast.success("Successfully Added", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "light",
+      });
+    } else {
+      toast.error("Please fill required field", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "light",
+      });
+    }
   };
   return (
     <>
+      <Helmet>
+        <title>Add Product</title>
+      </Helmet>
+      <ToastContainer />
       <div>
         <input
           value={name}
@@ -37,9 +73,9 @@ const AddProduct = () => {
           className="border ring border-gray-300 p-2.5 w-96 mt-5"
         >
           <option value="">Please Select Brand</option>
-          <option value="1">Chair</option>
-          <option value="2">Table</option>
-          <option value="3">Show Case</option>
+          <option value="Chair">Chair</option>
+          <option value="Table">Table</option>
+          <option value="Show Case">Show Case</option>
         </select>
         <br />
         <textarea

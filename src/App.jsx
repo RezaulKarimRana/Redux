@@ -13,6 +13,7 @@ import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import RootLayout from "./RootLayout";
 import Product from "./pages/Product";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
